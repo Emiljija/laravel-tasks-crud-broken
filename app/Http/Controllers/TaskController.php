@@ -62,4 +62,11 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
+
+    public function copy(Task $task)
+    {
+        $data = [$task->title, $task->description];
+        Task::create($data);
+        return redirect()->route('tasks.show', ['task' => $data])->with('success', 'Task copied successfully.');
+    }
 }
