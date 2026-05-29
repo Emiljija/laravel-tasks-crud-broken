@@ -54,6 +54,10 @@ class TaskController extends Controller
 
     public function updateStatus(Request $request, Task $task)
     {
+        $validated = $request->validate([
+            'status' => 'required',
+        ]);
+        $task->update($validated);
         return redirect()->route('tasks.index')->with('success', 'Status updated successfully.');
     }
 
@@ -65,8 +69,8 @@ class TaskController extends Controller
 
     public function copy(Task $task)
     {
-        $data = [$task->title, $task->description];
-        Task::create($data);
-        return redirect()->route('tasks.show', ['task' => $data])->with('success', 'Task copied successfully.');
+        $data = ['title' => $task->title, 'description' => $task->description, 'id2' => $task->id];
+        $task = Task::create($data);
+        return redirect()->route('tasks.show', ['task' => $task])->with('success', 'Task copied successfully.');
     }
 }

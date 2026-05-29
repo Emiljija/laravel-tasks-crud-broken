@@ -23,6 +23,10 @@
             <p>{{ $task->description ?: 'No description provided.' }}</p>
         </div>
 
+         <div class="border-t pt-4 mb-6">
+            <p>{{ $task->id2 ?: 'Not copied.' }}</p>
+        </div>
+
         <div class="flex gap-4">
             <a href="{{ route('tasks.edit', $task->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
             <a href="{{ route('tasks.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Back to List</a>
