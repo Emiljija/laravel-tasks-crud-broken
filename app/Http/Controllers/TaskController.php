@@ -25,9 +25,9 @@ class TaskController extends Controller
             'description' => 'required|string',
         ]);
 
-        Task::create($validated);
+        $task = Task::create($validated);
 
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        return redirect()->route('tasks.show', ['task' => $task])->with('success', 'Task created successfully.');
     }
 
     public function show(Task $task)
